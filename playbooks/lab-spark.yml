@@ -1,0 +1,9 @@
+---
+- hosts: lab-spark
+  become: yes
+  become_method: sudo
+  vars:
+
+
+  roles:
+    - role: spark

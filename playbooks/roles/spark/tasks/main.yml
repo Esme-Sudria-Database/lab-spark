@@ -1,0 +1,17 @@
+---
+- name: ensure package is downloaded
+  get_url:
+    url: "http://apache.crihan.fr/dist/spark/{{ spark_package }}/{{ spark_package }}-bin-hadoop2.7.tgz"
+    dest: "/tmp/{{ spark_package }}.zip"
+    mode: 0755
+
+- name: ensure /opt/spark directory exists
+  file:
+    path: /opt/spark
+    state: directory
+
+- name: ensure spark is unpacked
+  unarchive:
+    src: "/tmp/{{ spark_package }}.zip"
+    dest: /opt/spark
+    remote_src: true
