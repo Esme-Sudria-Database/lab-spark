@@ -18,7 +18,7 @@
 
 - name: ensure spark-shell is a link
   file:
-    src: "/opt/spark/{{spark_directory}}/bin/{{ item }}"
+    src: "/opt/spark/{{ spark_directory }}/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
   with_items:
