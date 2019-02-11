@@ -1,0 +1,22 @@
+---
+- name: ensure datasets exists
+  file:
+    path: /datasets/dataset=donation/blocks/
+    state: directory
+
+- name: download datasets
+  get_url:
+    url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Ddonation/blocks/{{ item }}
+    dest: /datasets/dataset=donation/blocks/{{ item }}
+    mode: 0666
+  with_items:
+    - block_1.csv
+    - block_2.csv
+    - block_3.csv
+    - block_4.csv
+
+- name: download datasets readme
+  get_url:
+    url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Ddonation/documentation
+    dest: /datasets/dataset=donation/blocks/documentation
+    mode: 0666

@@ -1,4 +1,14 @@
 ---
+- name: ensure openjdk is setup
+  package:
+    name: openjdk-8-jdk
+    state: present
+
+- name: ensure scala is setup
+  package:
+    name: scala
+    state: present
+
 - name: ensure package is downloaded
   get_url:
     url: "http://apache.crihan.fr/dist/spark/{{ spark_package }}/{{ spark_package }}-bin-hadoop2.7.tgz"
@@ -18,8 +28,23 @@
 
 - name: ensure spark-shell is a link
   file:
+    src: "/opt/spark/{{ spark_directory }}/bin/spark-shell"
+    dest: "/usr/local/bin/spark-shell"
+    state: link
+
+- name: ensure spark-shell requirements are available on path
+  file:
     src: "/opt/spark/{{ spark_directory }}/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
   with_items:
-    - spark-shell
+    - find-spark-home
+    - spark-submit
+    - spark-class
+
+- name: ensure SPARK_HOME is set as environment variable
+  lineinfile:
+    dest: /etc/environment
+    regexp: "^export SPARK_HOME="
+    line: "export SPARK_HOME=\"/opt/spark/{{ spark_directory }}\""
+    state: present

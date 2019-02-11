@@ -10,6 +10,8 @@ Vagrant.configure(2) do |config|
       vb.memory = "2048"
   end
 
+  config.vm.synced_folder "datasets/", "/datasets"
+
   config.vm.provision "shell", inline: <<-SCRIPT
     cp -rf /vagrant /home/vagrant
     chmod -x /home/vagrant/vagrant/local.ini
