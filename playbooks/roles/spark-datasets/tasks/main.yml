@@ -21,16 +21,26 @@
     dest: /datasets/dataset=donation/documentation
     mode: 0666
 
+- name: ensure datasets exists
+  file:
+    path: /datasets/dataset=yellow_tripdata/year=2013
+    state: directory
+
 - name: download datasets yellow_tripdata on year 2013
   get_url:
-    url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Ddataset=yellow_tripdata/year=2013/{{ item }}
-    dest: /datasets/dataset=yellow_tripdata/{{ item }}
+    url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Dyellow_tripdata/year%3D2013/{{ item }}
+    dest: /datasets/dataset=yellow_tripdata/year=2013
     mode: 0666
   with_items:
     - yellow_tripdata_2013-01.csv
 
+- name: ensure datasets exists
+  file:
+    path: /datasets/dataset=nyc-borough-boundaries
+    state: directory
+
 - name: download dataset nyc-borough-boundaries-polygon.geojson
   get_url:
     url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Dnyc-borough-boundaries/nyc-borough-boundaries-polygon.geojson
-    dest: /datasets/dataset=nyc-borough-boundaries/nyc-borough-boundaries-polygon.geojson
+    dest: /datasets/dataset=nyc-borough-boundaries
     mode: 0666
