@@ -32,6 +32,12 @@
     dest: "/usr/local/bin/spark-shell"
     state: link
 
+- name: ensure pyspark is a link
+  file:
+    src: "/opt/spark/{{ spark_directory }}/bin/pyspark"
+    dest: "/usr/local/bin/pyspark"
+    state: link
+
 - name: ensure spark-shell requirements are available on path
   file:
     src: "/opt/spark/{{ spark_directory }}/bin/{{ item }}"

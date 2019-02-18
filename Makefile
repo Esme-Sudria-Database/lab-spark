@@ -11,3 +11,4 @@ tests: ## check ansible playbooks syntax
 	ansible-playbook --syntax-check -i "localhost," playbooks/lab-spark.yml
 	ansible-lint -x ANSIBLE0016,ANSIBLE0006 playbooks/lab-spark.yml
 	cd playbooks/roles/spark; molecule test
+	cd playbooks/roles/zeppelin; molecule test

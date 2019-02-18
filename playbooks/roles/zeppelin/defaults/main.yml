@@ -1,0 +1,3 @@
+---
+zeppelin_package: zeppelin-0.8.1
+zeppelin_directory: "{{ zeppelin_package }}-bin-all"

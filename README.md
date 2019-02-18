@@ -61,3 +61,8 @@ To create the virtual machine, use the command
     vagrant up
 
 This script will use image from ubuntu 18.04. Ansible will pull spark ans install on it.
+
+Resources
+=========
+
+the lab use implementations from [Advanced Analytics with Spark](https://github.com/sryza/aas), by Sandy Ryza, Uri Laserson, Sean Owen, and Josh Wills.

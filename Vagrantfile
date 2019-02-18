@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.synced_folder "datasets/", "/datasets"
+  config.vm.synced_folder "libs/", "/libs"
 
   config.vm.provision "shell", inline: <<-SCRIPT
     cp -rf /vagrant /home/vagrant

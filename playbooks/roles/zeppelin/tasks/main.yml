@@ -1,0 +1,26 @@
+---
+
+- name: ensure zeppelin package has been download
+  get_url:
+    url: http://mirrors.standaloneinstaller.com/apache/zeppelin/zeppelin-0.8.1/zeppelin-0.8.1-bin-all.tgz
+    dest: /tmp/zeppelin-0.8.1-bin-all.tgz
+    mode: 0440
+
+- name: ensure directory exists
+  file:
+    path: /opt/zeppelin
+    state: directory
+
+- name: ensure zeppelin has been installed
+  unarchive:
+    src: /tmp/zeppelin-0.8.1-bin-all.tgz
+    dest: /opt/zeppelin
+    owner: root
+    group: root
+    remote_src: true
+
+- name: ensure zeppelin-daemon is a link
+  file:
+    src: "/opt/zeppelin/{{ zeppelin_directory }}/bin/zeppelin-daemon.sh"
+    dest: "/usr/local/bin/zeppelin-daemon"
+    state: link
