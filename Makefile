@@ -12,3 +12,8 @@ tests: ## check ansible playbooks syntax
 	ansible-lint -x ANSIBLE0016,ANSIBLE0006 playbooks/lab-spark.yml
 	cd playbooks/roles/spark; molecule test
 	cd playbooks/roles/zeppelin; molecule test
+
+.PHONY: install_shared_environment
+install_shared_environment:
+	ansible-playbook -i "amazon.ini" "playbooks/bootstrap_ubuntu.yml"
+	ansible-playbook -i "amazon.ini" "playbooks/lab-spark.yml"

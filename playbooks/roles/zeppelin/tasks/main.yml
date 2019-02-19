@@ -1,4 +1,14 @@
 ---
+- name: ensure group 'zeppelin' exists
+  group:
+    name: zeppelin
+    state: present
+
+- name: ense the user 'zeppelin' in a primary group of 'zeppelin' exists
+  user:
+    name: zeppelin
+    group: zeppelin
+    create_home: true
 
 - name: ensure zeppelin package has been download
   get_url:
@@ -15,8 +25,8 @@
   unarchive:
     src: /tmp/zeppelin-0.8.1-bin-all.tgz
     dest: /opt/zeppelin
-    owner: root
-    group: root
+    owner: zeppelin
+    group: zeppelin
     remote_src: true
 
 - name: ensure zeppelin-daemon is a link
@@ -24,3 +34,20 @@
     src: "/opt/zeppelin/{{ zeppelin_directory }}/bin/zeppelin-daemon.sh"
     dest: "/usr/local/bin/zeppelin-daemon"
     state: link
+
+- name: configure zeppelin service
+  template:
+    src: "templates/zeppelin.service.j2"
+    dest: "/etc/systemd/system/zeppelin.service"
+
+- name: just force systemd to reread configs (2.4 and above)
+  systemd:
+    daemon_reload: true
+  when: zeppelin_service_started
+
+- name: start service zeppelin, if not started
+  service:
+    name: zeppelin
+    state: started
+    enabled: true
+  when: zeppelin_service_started

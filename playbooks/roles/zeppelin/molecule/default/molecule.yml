@@ -12,6 +12,10 @@ provisioner:
   name: ansible
   lint:
     name: ansible-lint
+  inventory:
+    group_vars:
+      all:
+        zeppelin_service_started: false
 scenario:
   name: default
 verifier:

@@ -1,0 +1,13 @@
+[Unit]
+Description=Service to run Zeppelin Daemon
+Documentation=
+[Service]
+User=zeppelin
+Group=zeppelin
+Type=forking
+WorkingDirectory=/opt/zeppelin/{{ zeppelin_directory }}
+ExecStart=/opt/zeppelin/{{ zeppelin_directory }}/bin/zeppelin-daemon.sh start
+ExecStop=/opt/zeppelin/{{ zeppelin_directory }}/bin/zeppelin-daemon.sh stop
+
+[Install]
+WantedBy=multi-user.target
