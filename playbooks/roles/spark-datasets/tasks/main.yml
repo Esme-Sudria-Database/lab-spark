@@ -34,7 +34,7 @@
   with_items:
     - yellow_tripdata_2013-01.csv
 
-- name: ensure datasets exists
+- name: ensure "/datasets/dataset=nyc-borough-boundaries" exists as directory
   file:
     path: /datasets/dataset=nyc-borough-boundaries
     state: directory
@@ -44,3 +44,13 @@
     url: https://s3-eu-west-1.amazonaws.com/{{ bucket }}/datasets/dataset%3Dnyc-borough-boundaries/nyc-borough-boundaries-polygon.geojson
     dest: /datasets/dataset=nyc-borough-boundaries
     mode: 0666
+
+- name: ensure "/libs" exists as directory
+  file:
+    path: /libs
+    state: directory
+
+- name: install library for geotime
+  copy:
+    src: files/ch08-geotime-2.0.0-jar-with-dependencies.jar
+    dest: /libs/ch08-geotime-2.0.0-jar-with-dependencies.jar
