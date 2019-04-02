@@ -1,3 +1,3 @@
 ---
-spark_package: spark-2.3.2
+spark_package: spark-2.4.0
 spark_directory: "{{ spark_package }}-bin-hadoop2.7"
