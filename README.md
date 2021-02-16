@@ -1,19 +1,14 @@
 ![ci](https://github.com/Esme-Sudria-Database/lab-postgresql/workflows/ci/badge.svg)
 
 
-This blueprint provides an environment to build a workstation based on ``docker-compose``.
-
-A workstation make easier activities as :
-
-* organize a lab with students
-* provision a developer environment for new comers
-* ...
+Environnement de lab pour appréhender l'usage de spark en tant que framework
+de développement.
 
 Services
-===================
+========
 
 * [webconsole](http://localhost:7681) : un terminal disponible dans son navigateur web
-* (add your own services ...)
+* [notebook](http://localhost:8080) : un notebook zeppelin pour exécuter des commandes sur spark
 
 Requirement 1 : installation to perform on your computer
 ========================================================
