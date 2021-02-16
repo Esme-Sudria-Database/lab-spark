@@ -55,13 +55,13 @@ Step 1 : install the environment
 1. clone this repository :
 
 ```
-git clone https://github.com/FabienArcellier/blueprint-docker-workstation.git
+git clone https://github.com/Esme-Sudria-Database/lab-spark.git
 ```
 
 3. go on the directory and mount the workstation
 
 ```bash
-cd blueprint-docker-workstation
+cd lab-spark
 docker-compose up
 ```
 
